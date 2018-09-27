@@ -44,5 +44,5 @@ jobs:
       # - run: mvn integration-test
 
       - store_artifacts:
-          path: /home/circleci/repo/build/zookeeper-3.5.5-badh1.tar.gz
+          path: /root/repo/build/zookeeper-3.5.5-badh1.tar.gz
           destination: badh-zookeeper-bin
