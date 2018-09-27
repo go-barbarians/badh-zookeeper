@@ -34,7 +34,6 @@ jobs:
 
       - run: apt-get install -y maven build-essential autoconf automake wget libtool cmake zlib1g-dev pkg-config libssl-dev libfuse-dev snappy libsnappy-dev autogen openjdk-8-jdk ant
       - run: ant
-      - run: mvn install:install-file -Dfile=/root/repo/build/zookeeper-3.5.5-badh1.jar -DgroupId=org.apache.zookeeper -DartifactId=apache-zookeeper  -Dversion=3.5.5-badh1 -Dpackaging=jar
 
       - save_cache:
           paths:
