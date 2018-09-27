@@ -32,7 +32,7 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: apt-get install -y maven openjdk-8-jdk ant automake build-essential libcppunit-dev
+      - run: apt-get install -y maven openjdk-8-jdk ant automake build-essential libcppunit-dev libtool
       - run: ant tar
 
       - save_cache:
