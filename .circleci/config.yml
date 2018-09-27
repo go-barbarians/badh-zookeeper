@@ -32,8 +32,8 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: apt-get install -y maven openjdk-8-jdk ant
-      - run: ant
+      - run: apt-get install -y maven openjdk-8-jdk ant automake
+      - run: ant tar
 
       - save_cache:
           paths:
@@ -44,5 +44,5 @@ jobs:
       # - run: mvn integration-test
 
       - store_artifacts:
-          path: /home/circleci/repo/build
+          path: /home/circleci/repo/build/zookeeper-3.5.5-badh1.tar.gz
           destination: badh-zookeeper-bin
