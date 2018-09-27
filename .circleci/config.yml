@@ -28,7 +28,6 @@ jobs:
 
       - run: apt-get install -y maven openjdk-8-jdk ant automake build-essential libcppunit-dev libtool
       - run: ant tar
-      - run: cp /root/repo/build/zookeeper-*-bin.jar workspace/zookeeper
       - run: pip install awscli
       - run: aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
       - run: aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
@@ -38,14 +37,7 @@ jobs:
 
       - run: aws s3 cp /root/repo/build/zookeeper-$ZK_BUILD_NUMBER-bin.jar s3://mvn.barbarians.io/
 
+      - run: aws s3 cp /root/repo/build/zookeeper-$ZK_BUILD_NUMBER.tar.gz s3://mvn.barbarians.io/
+
       # run tests!
       # - run: mvn integration-test
-
-      - persist_to_workspace:
-          root: workspace
-          paths:
-            - zookeeper
-
-      - store_artifacts:
-          path: /root/repo/build/zookeeper-3.5.5-badh1
-          destination: badh-zookeeper-bin
