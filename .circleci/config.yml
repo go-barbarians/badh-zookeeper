@@ -32,9 +32,11 @@ jobs:
           - v1-dependencies-{{ checksum "build.xml" }}
           - v1-dependencies-
 
+      - run: mkdir -p workspace/zookeeper
       - run: apt-get install -y maven openjdk-8-jdk ant automake build-essential libcppunit-dev libtool
       - run: ant tar
-      - run: mvn install:install-file -Dfile=/root/repo/build/zookeeper-$ZK_BUILD_NUMBER.jar -DgroupId=org.apache.zookeeper -DartifactId=zookeeper -Dversion=$ZK_BUILD_NUMBER -Dpackaging=jar
+      - run: cp /root/repo/build/zookeeper-*-bin.jar workspace/zookeeper
+      - run: mvn install:install-file -Dfile=/root/repo/build/zookeeper-$ZK_BUILD_NUMBER-bin.jar -DgroupId=org.apache.zookeeper -DartifactId=zookeeper -Dversion=$ZK_BUILD_NUMBER -Dpackaging=jar
 
       - save_cache:
           paths:
@@ -43,6 +45,11 @@ jobs:
 
       # run tests!
       # - run: mvn integration-test
+
+      - persist_to_workspace:
+          root: workspace
+          paths:
+            - zookeeper
 
       - store_artifacts:
           path: /root/repo/build/zookeeper-3.5.5-badh1
