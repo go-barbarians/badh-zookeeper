@@ -45,5 +45,5 @@ jobs:
       # - run: mvn integration-test
 
       - store_artifacts:
-          path: /root/repo/build/zookeeper-$ZK_BUILD_NUMBER.tar.gz
+          path: /root/repo/build
           destination: badh-zookeeper-bin
