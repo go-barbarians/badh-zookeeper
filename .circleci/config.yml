@@ -29,8 +29,8 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-
           - v1-dependencies-{{ checksum "build.xml" }}
+          - v1-dependencies-
 
       - run: apt-get install -y maven openjdk-8-jdk ant automake build-essential libcppunit-dev libtool
       - run: ant tar
