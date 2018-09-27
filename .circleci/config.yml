@@ -34,15 +34,16 @@ jobs:
 
       - run: apt-get install -y maven openjdk-8-jdk ant automake build-essential libcppunit-dev libtool
       - run: ant tar
+      - run: mvn install:install-file -Dfile=/root/repo/build/zookeeper-3.5.5-badh1.jar -DgroupId=org.apache.zookeeper -DartifactId=zookeeper -Dversion=3.5.5-badh1 -Dpackaging=jar
 
       - save_cache:
           paths:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
-        
+
       # run tests!
       # - run: mvn integration-test
 
       - store_artifacts:
-          path: /root/repo/build/zookeeper-3.5.5-badh1.tar.gz
+          path: /root/repo/build/zookeeper-*.tar.gz
           destination: badh-zookeeper-bin
