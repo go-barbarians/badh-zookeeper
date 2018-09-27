@@ -45,5 +45,5 @@ jobs:
       # - run: mvn integration-test
 
       - store_artifacts:
-          path: /root/repo/build
+          path: /root/repo/build/zookeeper-3.5.5-badh1
           destination: badh-zookeeper-bin
