@@ -36,6 +36,7 @@ jobs:
       - run: mvn install:install-file -Dfile=/root/repo/build/zookeeper-$ZK_BUILD_NUMBER-bin.jar -DgroupId=org.apache.zookeeper -DartifactId=zookeeper -Dversion=$ZK_BUILD_NUMBER -Dpackaging=jar
 
       - run: aws s3 cp /root/repo/build/zookeeper-$ZK_BUILD_NUMBER-bin.jar s3://mvn.barbarians.io/
+      - run: aws s3 cp /root/repo/build/zookeeper-$ZK_BUILD_NUMBER-test.jar s3://mvn.barbarians.io/
 
       - run: aws s3 cp /root/repo/build/zookeeper-$ZK_BUILD_NUMBER.tar.gz s3://mvn.barbarians.io/
 
