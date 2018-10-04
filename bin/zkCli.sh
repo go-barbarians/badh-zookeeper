@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
@@ -25,7 +25,7 @@
 # relative to the canonical path of this script.
 #
 
-# use POSTIX interface, symlink is followed automatically
+# use POSIX interface, symlink is followed automatically
 ZOOBIN="${BASH_SOURCE-$0}"
 ZOOBIN="$(dirname "${ZOOBIN}")"
 ZOOBINDIR="$(cd "${ZOOBIN}"; pwd)"

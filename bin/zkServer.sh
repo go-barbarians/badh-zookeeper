@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
@@ -22,7 +22,7 @@
 #
 
 
-# use POSTIX interface, symlink is followed automatically
+# use POSIX interface, symlink is followed automatically
 ZOOBIN="${BASH_SOURCE-$0}"
 ZOOBIN="$(dirname "${ZOOBIN}")"
 ZOOBINDIR="$(cd "${ZOOBIN}"; pwd)"
@@ -114,7 +114,7 @@ ZOO_DATADIR="$($GREP "^[[:space:]]*dataDir" "$ZOOCFG" | sed -e 's/.*=//')"
 ZOO_DATADIR="$(echo -e "${ZOO_DATADIR}" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
 ZOO_DATALOGDIR="$($GREP "^[[:space:]]*dataLogDir" "$ZOOCFG" | sed -e 's/.*=//')"
 
-# iff autocreate is turned off and the datadirs don't exist fail
+# if autocreate is turned off and the datadirs don't exist fail
 # immediately as we can't create the PID file, etc..., anyway.
 if [ -n "$ZOO_DATADIR_AUTOCREATE_DISABLE" ]; then
     if [ ! -d "$ZOO_DATADIR/version-2" ]; then
@@ -230,11 +230,11 @@ status)
 	clientPortAddress="localhost"
     fi
     clientPort=`$GREP "^[[:space:]]*clientPort[^[:alpha:]]" "$ZOOCFG" | sed -e 's/.*=//'`
-    if ! [[ "$clientPort"  =~ ^[0-9]+$ ]]
+    if ! [[ "$clientPort" == $(echo "$clientPort" | egrep '^[0-9]+$') ]]
     then
        dataDir=`$GREP "^[[:space:]]*dataDir" "$ZOOCFG" | sed -e 's/.*=//'`
        myid=`cat "$dataDir/myid"`
-       if ! [[ "$myid" =~ ^[0-9]+$ ]] ; then
+       if ! [[ "$myid" == $(echo "$myid" | egrep '^[0-9]+$') ]] ; then
          echo "clientPort not found and myid could not be determined. Terminating."
          exit 1
        fi
@@ -248,7 +248,7 @@ status)
           echo "Client port not found. Terminating."
           exit 1
        fi
-       if [[ "$clientPortAndAddress" =~ ^.*:[0-9]+ ]] ; then
+       if [[ "$clientPortAndAddress" == $(echo "$clientPortAndAddress" | egrep '^.*:[0-9]+') ]] ; then
           clientPortAddress=`echo "$clientPortAndAddress" | sed -e 's/:.*//'`
        fi
        clientPort=`echo "$clientPortAndAddress" | sed -e 's/.*://'`
