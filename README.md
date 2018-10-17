@@ -1,36 +1,46 @@
-For the latest information about ZooKeeper, please visit our website at:
+# Barbarian big data system
 
-   http://zookeeper.apache.org/
+Barbarian is the world's best cloud-first, cloud-agnostic in-memory big data system founded on Apache Hadoop for enterprise-ready parallel distributed data processing at scale.
 
-and our wiki, at:
+Read more at:
+[https://barbarians.io/](https://barbarians.io)
 
-   https://cwiki.apache.org/confluence/display/ZOOKEEPER
+Docs at:
+[http://docs.barbarians.io/](http://docs.barbarians.io)
 
-Full documentation for this release can also be found in docs/index.html
+### About Barbarian
 
----------------------------
-Packaging/release artifacts
+The Barbarian Data System is an in-memory, parallel, distributed (MPP) data warehousing engine designed to be deployed to Kubernetes clusters, offering Apache Hive for powerful and flexible SQL based analytics. Barbarian includes an integrated in-memory filesystem and can run in three modes of operation.
+* As an in-memory, standalone data warehousing system
+* As a data warehousing system backed by an external storage system like Amazon S3
+* In a hybrid mode, where primary storage is the external storage system, with common paths mounted to the in-memory filesystem
 
-The release artifact contains the following jar file at the toplevel:
+Barbarian includes compelling features including Apache Hive LLAP and Tez, with transactional tables enabled by default. 
 
-zookeeper-<version>.jar         - legacy jar file which contains all classes
-                                  and source files. Prior to version 3.3.0 this
-                                  was the only jar file available. It has the 
-                                  benefit of having the source included (for
-                                  debugging purposes) however is also larger as
-                                  a result
+Barbarian's integrated Ignite in-memory distributed parallel filesystem is resilient to node failure with replication enabled by default.
 
-The release artifact contains the following jar files in "dist-maven" directory:
+Barbarian has no single points of failure.
 
-zookeeper-<version>.jar         - bin (binary) jar - contains only class (*.class) files
-zookeeper-<version>-sources.jar - contains only src (*.java) files
-zookeeper-<version>-javadoc.jar - contains only javadoc files
+Barbarian is offered with the [Apache v2.0](https://www.apache.org/licenses/LICENSE-2.0) software license.
 
-These bin/src/javadoc jars were added specifically to support Maven/Ivy which have 
-the ability to pull these down automatically as part of your build process. 
-The content of the legacy jar and the bin+sources jar are the same.
+### Installing Barbarian
 
-As of version 3.3.0 bin/sources/javadoc jars contained in dist-maven directory
-are deployed to the Apache Maven repository after the release has been accepted
-by Apache:
-  https://repository.apache.org/
+Barbarian can be deployed to your Kubernetes cluster with just two commands:
+
+```
+helm repo add barbarians http://charts.barbarians.io/barbarian
+helm install barbarians/barbarian
+```
+
+## Apache ZooKeeper
+
+This repo contains the Barbarian Data System fork of the **Apache ZooKeeper** project.
+
+## Releases
+
+| Release | Notes |
+| -- | -- |
+| 0.1 | Prelease 1 |
+| 0.2 | Barbarian Data System r2 |
+
+
